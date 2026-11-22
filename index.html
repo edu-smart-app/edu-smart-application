@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#102a43">
+  <meta name="description" content="EDU SMART - a learning and quiz application for Grades 9 to 12">
+  <title>EDU SMART | Learn smarter</title>
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" type="image/png" href="favicon.png">
+  <link rel="apple-touch-icon" href="icons/icon-192.png">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="EDU SMART">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar">
+      <a class="brand" href="#" data-page="home"><span class="brand-mark">E</span><span>EDU <b>SMART</b><small>LEARN • PRACTISE • GROW</small></span></a>
+      <nav class="nav-links" aria-label="Main navigation">
+        <button class="nav-link active" data-page="home">⌂ <span>Dashboard</span></button>
+        <button class="nav-link" data-page="learn">▤ <span>Study materials</span></button>
+        <button class="nav-link" data-page="quiz">✎ <span>Quiz centre</span></button>
+        <button class="nav-link" data-page="schedule">▦ <span>Study schedule</span></button>
+        <button class="nav-link" data-page="calculator">％ <span>Grade calculator</span></button>
+        <button class="nav-link" data-page="performance">▥ <span>Performance</span></button>
+        <button class="nav-link" data-page="achievements">♜ <span>Achievements</span></button>
+        <button class="nav-link" data-page="profile">◎ <span>My profile</span></button>
+        <button class="nav-link" data-page="settings">⚙ <span>Settings</span></button>
+      </nav>
+      <div class="sidebar-bottom"><div class="mini-note">Small steps every day lead to big results.</div><span class="muted">EDU SMART • Student edition</span></div>
+    </aside>
+
+    <main class="main-area">
+      <header class="topbar">
+        <button class="icon-btn mobile-menu" id="menuBtn" aria-label="Open menu">☰</button>
+        <div><div class="eyebrow">YOUR PERSONAL LEARNING SPACE</div><h1 id="pageTitle">Dashboard</h1></div>
+        <div class="top-actions"><span class="date-label" id="todayLabel"></span><button class="icon-btn" id="themeBtn" title="Toggle dark mode">☾</button><div class="avatar" id="avatar">S<img id="avatarPhoto" class="avatar-photo hidden" alt="Profile photo"></div></div>
+      </header>
+
+      <section class="page active" id="page-home">
+        <div class="hero">
+          <div class="hero-copy"><span class="pill light-pill">WELCOME TO YOUR LEARNING JOURNEY</span><h2>Learn smarter.<br><em>Achieve more.</em></h2><p>Study your lessons, practise questions and follow your progress — all in one place.</p><button class="btn btn-white" data-go="quiz">Start learning <span>→</span></button></div>
+          <div class="hero-art" aria-hidden="true"><div class="orbit orbit-one"></div><div class="orbit orbit-two"></div><div class="book-art">✦<br>📘</div><div class="floating-card">✎ &nbsp; Keep practising!</div></div>
+        </div>
+        <div class="section-heading"><div><span class="eyebrow">OVERVIEW</span><h2>Your learning at a glance</h2></div></div>
+        <div class="stats-grid">
+          <article class="stat-card"><span class="stat-icon blue">▤</span><div><strong id="statQuizzes">0</strong><span>Quizzes completed</span></div></article>
+          <article class="stat-card"><span class="stat-icon green">✓</span><div><strong id="statAverage">0%</strong><span>Average score</span></div></article>
+          <article class="stat-card"><span class="stat-icon orange">◷</span><div><strong id="statMinutes">0</strong><span>Study minutes logged</span></div></article>
+          <article class="stat-card"><span class="stat-icon purple">★</span><div><strong id="statBest">—</strong><span>Best quiz score</span></div></article>
+        </div>
+        <article class="panel learning-progress-panel"><div class="panel-heading"><div><span class="eyebrow">YOUR LEARNING JOURNEY</span><h3>Subject progress</h3></div><strong id="learningProgressLabel">0/5 subjects practised</strong></div><div class="learning-progress-track"><div id="learningProgressBar"></div></div><p class="muted small" id="learningProgressHint">Complete a quiz in a subject to begin tracking your progress.</p></article>
+        <div class="two-column">
+          <article class="panel"><div class="panel-heading"><div><span class="eyebrow">QUICK START</span><h3>Choose where to begin</h3></div></div><div class="quick-grid"><button class="quick-item" data-go="learn"><span>📚</span><b>Study materials</b><small>Read topics and notes</small></button><button class="quick-item" data-go="quiz"><span>🧠</span><b>Take a quiz</b><small>Test your understanding</small></button><button class="quick-item" data-go="schedule"><span>🗓️</span><b>Plan your week</b><small>Organise study time</small></button></div></article>
+          <article class="panel"><div class="panel-heading"><div><span class="eyebrow">RECENT ACTIVITY</span><h3>Latest quiz results</h3></div><button class="text-btn" data-go="performance">View all</button></div><div id="recentResults" class="empty-state compact">Your completed quizzes will appear here.</div></article>
+        </div>
+        <div class="notice"><b>Remember:</b> EDU SMART stores your profile and progress in this browser on this device. It does not automatically sync to other devices.</div>
+      </section>
+
+      <section class="page" id="page-learn">
+        <div class="page-intro"><span class="eyebrow">LEARN AT YOUR OWN PACE</span><h2>Study materials</h2><p>Your saved grade is selected automatically. Choose a subject and unit to see your learning resources.</p></div>
+        <div class="panel selector-panel">
+          <div class="form-grid three">
+            <label>Subject<select id="learnSubject"></select></label><label>Unit<select id="learnUnit"></select></label>
+          </div>
+        </div>
+        <article class="panel lesson-panel" id="lessonContent"></article>
+      </section>
+
+      <section class="page" id="page-quiz">
+        <div class="page-intro"><span class="eyebrow">PRACTISE AND IMPROVE</span><h2>Quiz centre</h2><p>Questions are organised for your selected grade, subject, unit and difficulty.</p></div>
+        <div class="panel">
+          <div class="form-grid four">
+            <label>Subject<select id="quizSubject"></select></label><label>Unit<select id="quizUnit"></select></label><label>Questions<select id="questionCount"><option>10</option><option>15</option><option>20</option><option>All available</option></select></label>
+          </div>
+          <div class="difficulty-row"><span class="field-title">Choose difficulty</span><div class="difficulty-options"><button class="difficulty selected" data-difficulty="Easy"><b>●</b> Easy</button><button class="difficulty" data-difficulty="Medium"><b>◆</b> Medium</button><button class="difficulty" data-difficulty="Hard"><b>★</b> Hard</button></div></div>
+          <div class="quiz-actions"><label class="check-label"><input type="checkbox" id="timerToggle" checked> Enable 10-minute timer</label><button class="btn btn-primary" id="startQuiz">Start quiz →</button></div>
+          <p class="muted small" id="questionAvailability"></p>
+        </div>
+        <div class="panel quiz-panel hidden" id="quizPanel">
+          <div class="quiz-top"><div><span class="eyebrow" id="quizContext">GRADE 10 • CHEMISTRY</span><h3 id="quizProgress">Question 1 of 10</h3></div><div class="quiz-top-actions"><div class="timer" id="timerDisplay">10:00</div><button class="btn btn-outline study-exit" id="exitQuizMode" type="button">Exit fullscreen</button></div></div>
+          <div class="progress-track"><div id="quizProgressBar"></div></div>
+          <div id="questionArea"></div>
+          <div class="quiz-bottom"><button class="btn btn-outline" id="prevQuestion">← Previous</button><span class="muted small" id="answeredCount">0 answered</span><button class="btn btn-primary" id="nextQuestion">Next →</button><button class="btn btn-danger hidden" id="finishQuiz">Finish quiz</button></div>
+        </div>
+        <div class="panel hidden" id="quizResult"></div>
+      </section>
+
+      <section class="page" id="page-schedule">
+        <div class="page-intro"><span class="eyebrow">BUILD A GOOD ROUTINE</span><h2>Study schedule</h2><p>Create your own weekly study plan. Your entries are saved in this browser.</p></div>
+        <div class="two-column schedule-columns"><article class="panel"><h3>Add a study session</h3><form id="scheduleForm" class="stack-form"><label>Subject<select id="scheduleSubject" required></select></label><div class="form-grid two"><label>Day<select id="scheduleDay"><option>Monday</option><option>Tuesday</option><option>Wednesday</option><option>Thursday</option><option>Friday</option><option>Saturday</option><option>Sunday</option></select></label><label>Time<input id="scheduleTime" type="time" required></label></div><label>Study topic<input id="scheduleTopic" placeholder="e.g. Vectors"></label><button class="btn btn-primary" type="submit">Add to schedule</button></form></article><article class="panel"><div class="panel-heading"><h3>Your weekly plan</h3><button class="text-btn" id="clearSchedule">Clear all</button></div><div id="scheduleList" class="schedule-list empty-state">No sessions added yet.</div></article></div>
+      </section>
+
+      <section class="page" id="page-calculator">
+        <div class="page-intro"><span class="eyebrow">CHECK YOUR MARKS</span><h2>Grade calculator</h2><p>Add marks by subject and assessment. EDU SMART calculates each subject average and your overall average.</p></div>
+        <div class="stats-grid calculator-stats"><article class="stat-card"><span class="stat-icon blue">%</span><div><strong id="weightedAverage">0%</strong><span>Overall average</span></div></article><article class="stat-card"><span class="stat-icon green">▦</span><div><strong id="subjectsWithMarks">0/5</strong><span>Subjects with marks</span></div></article><article class="stat-card"><span class="stat-icon purple">✓</span><div><strong id="assessmentCount">0</strong><span>Assessments entered</span></div></article></div>
+        <div class="two-column"><article class="panel"><h3>Enter an assessment mark</h3><form id="calcForm" class="stack-form"><label>Subject<select id="calcSubject" required></select></label><label>Assessment type<select id="assessmentType" required><option>Assignment</option><option>Classwork</option><option>Quiz</option><option>Test</option><option>Midterm examination</option><option>Final examination</option><option>Project</option><option>Other</option></select></label><label>Assessment name<input id="assessmentName" placeholder="e.g. Chapter 2 test" required></label><div class="form-grid two"><label>Mark obtained<input id="markObtained" type="number" min="0" step="0.01" required></label><label>Out of<input id="markOutOf" type="number" min="0.01" step="0.01" value="100" required></label></div><label>Weight within subject (%)<input id="markWeight" type="number" min="0.01" max="100" step="0.01" value="100" required></label><button class="btn btn-primary" type="submit">Add assessment</button></form></article><article class="panel"><div class="panel-heading"><h3>Subject results</h3><button class="text-btn" id="clearMarks">Clear all marks</button></div><div id="subjectResults" class="subject-results"></div></article></div>
+        <article class="panel"><div class="panel-heading"><h3>Assessment records</h3><span class="muted small">Grouped by subject</span></div><div id="assessmentList" class="empty-state">No marks entered yet.</div></article>
+      </section>
+
+      <section class="page" id="page-performance">
+        <div class="page-intro"><span class="eyebrow">SEE HOW YOU ARE IMPROVING</span><h2>Performance</h2><p>Your quiz history and score trends are shown here.</p></div>
+        <div class="stats-grid"><article class="stat-card"><span class="stat-icon blue">▤</span><div><strong id="perfTotal">0</strong><span>Total quizzes</span></div></article><article class="stat-card"><span class="stat-icon green">✓</span><div><strong id="perfAverage">0%</strong><span>Average score</span></div></article><article class="stat-card"><span class="stat-icon purple">★</span><div><strong id="perfBest">—</strong><span>Best score</span></div></article></div>
+        <article class="panel"><div class="panel-heading"><h3>Quiz history</h3><button class="text-btn" id="clearHistory">Clear history</button></div><div id="historyList" class="empty-state">No quiz results yet.</div></article>
+      </section>
+
+      <section class="page" id="page-achievements">
+        <div class="page-intro"><span class="eyebrow">CELEBRATE YOUR PROGRESS</span><h2>Achievements</h2><p>Earn milestones by practising consistently.</p></div><div class="achievement-grid" id="achievementGrid"></div>
+      </section>
+
+      <section class="page" id="page-profile">
+        <div class="page-intro"><span class="eyebrow">YOUR LEARNING IDENTITY</span><h2>My profile</h2><p>Only a nickname and selected grade are needed for this local profile.</p></div>
+        <article class="panel profile-panel"><div class="profile-avatar" id="profileAvatar">S<img id="profilePhoto" class="profile-photo hidden" alt="Profile photo"></div><div class="photo-actions"><label class="btn btn-outline photo-choose" for="profilePhotoInput">Choose photo</label><input id="profilePhotoInput" class="photo-input" type="file" accept="image/*"><button class="btn btn-outline" id="removeProfilePhoto" type="button">Remove photo</button></div><p class="muted small photo-help">Choose a photo from your device. It is resized and saved only on this device.</p><form id="profileForm" class="stack-form"><label>Nickname<input id="profileName" maxlength="30" placeholder="Enter a nickname"></label><label>Current grade<select id="profileGrade"><option>Grade 9</option><option>Grade 10</option><option>Grade 11</option><option>Grade 12</option></select></label><label id="profileStreamWrap" class="hidden">Science stream<select id="profileStream"><option value="Social Science">Social Science</option><option value="Natural Science">Natural Science</option></select></label><button class="btn btn-primary" type="submit">Save profile</button></form></article>
+      </section>
+
+      <section class="page" id="page-settings">
+        <div class="page-intro"><span class="eyebrow">MAKE IT YOURS</span><h2>Settings</h2><p>Adjust the application appearance and saved information.</p></div>
+        <article class="panel settings-panel"><div class="setting-row"><div><b>Dark appearance</b><small>Use a darker colour theme.</small></div><label class="switch"><input type="checkbox" id="darkToggle"><span></span></label></div><div class="setting-row"><div><b>Sound effects</b><small>Reserved for a future version.</small></div><label class="switch"><input type="checkbox" id="soundToggle"><span></span></label></div><div class="setting-row"><div><b>Export my data</b><small>Download your profile, schedule and quiz history.</small></div><button class="btn btn-outline" id="exportData">Export data</button></div><div class="setting-row"><div><b>Reset application data</b><small>Remove locally saved profile, results and schedule.</small></div><button class="btn btn-danger" id="resetData">Reset data</button></div></article>
+      </section>
+
+      <footer class="footer">EDU SMART <span>Made for learning and progress.</span></footer>
+    </main>
+  </div>
+  <div id="gradeWelcome" class="grade-welcome hidden" role="dialog" aria-modal="true" aria-labelledby="gradeWelcomeTitle">
+    <div class="grade-welcome-card">
+      <span class="eyebrow">LET’S SET UP YOUR LEARNING SPACE</span>
+      <h2 id="gradeWelcomeTitle">Which grade are you in?</h2>
+      <p>Choose your current grade. EDU SMART will use it automatically throughout the app. You can change it later in My profile.</p>
+      <form id="gradeWelcomeForm" class="stack-form">
+        <label>Your grade<select id="firstGrade" required><option value="">Choose your grade</option><option>Grade 9</option><option>Grade 10</option><option>Grade 11</option><option>Grade 12</option></select></label>
+        <label id="firstStreamWrap" class="hidden">Choose your stream<select id="firstStream"><option value="Social Science">Social Science</option><option value="Natural Science">Natural Science</option></select></label>
+        <button class="btn btn-primary" type="submit">Continue to EDU SMART →</button>
+      </form>
+    </div>
+  </div>
+  <div id="toast" class="toast" role="status"></div>
+  <script src="js/questions.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
