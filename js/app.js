@@ -416,3 +416,83 @@ if("serviceWorker" in navigator && location.protocol!=="file:"){
   window.addEventListener("load",()=>navigator.serviceWorker.register("./service-worker.js").catch(()=>{}));
 }
 setupSelectors();loadProfile();refreshGradeContent();applyTheme();renderLesson();renderDashboard();updateAvailability();renderSchedule();renderAssessments();showGradeWelcome();
+
+/* EDU SMART - Gemini AI Assistant */
+
+const aiToggle = document.getElementById("ai-toggle");
+const aiClose = document.getElementById("ai-close");
+const aiChat = document.getElementById("ai-chat");
+const aiForm = document.getElementById("ai-form");
+const aiInput = document.getElementById("ai-input");
+const aiMessages = document.getElementById("ai-messages");
+const aiSend = document.getElementById("ai-send");
+
+if (aiToggle && aiClose && aiChat && aiForm) {
+
+  aiToggle.addEventListener("click", () => {
+    aiChat.classList.toggle("hidden");
+  });
+
+  aiClose.addEventListener("click", () => {
+    aiChat.classList.add("hidden");
+  });
+
+  function addAIMessage(message, type) {
+    const bubble = document.createElement("div");
+    bubble.className = "ai-message " + type;
+    bubble.textContent = message;
+    aiMessages.appendChild(bubble);
+    aiMessages.scrollTop = aiMessages.scrollHeight;
+    return bubble;
+  }
+
+  aiForm.addEventListener("submit", async (event) => {
+    event.preventDefault();
+
+    const question = aiInput.value.trim();
+    if (!question) return;
+
+    addAIMessage(question, "user");
+    aiInput.value = "";
+
+    aiSend.disabled = true;
+    const loading = addAIMessage("Thinking...", "bot");
+
+    try {
+      const response = await fetch(
+        "https://edu-smart-app.vercel.app/api/chat",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({
+            message: question
+          })
+        }
+      );
+
+      const data = await response.json();
+      loading.remove();
+
+      if (!response.ok) {
+        throw new Error(data.error || "AI request failed.");
+      }
+
+      addAIMessage(data.answer || "No answer received.", "bot");
+
+    } catch (error) {
+      loading.remove();
+      addAIMessage(
+        "Sorry, I couldn't connect to the AI service. Please try again.",
+        "bot"
+      );
+      console.error("EDU SMART AI:", error);
+
+    } finally {
+      aiSend.disabled = false;
+      aiInput.focus();
+    }
+  });
+}
+
