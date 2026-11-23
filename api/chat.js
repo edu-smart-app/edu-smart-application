@@ -35,43 +35,48 @@ module.exports = async (req, res) => {
       });
     }
 
-    // Check API key
-    if (!process.env.GEMINI_API_KEY) {
+    // Check Groq API key
+    if (!process.env.GROQ_API_KEY) {
       return res.status(500).json({
         error: "AI key is not configured."
       });
     }
 
-    // Send question to Gemini
+    // Send question to Groq
     const response = await fetch(
-      "https://generativelanguage.googleapis.com/v1beta/models/gemini-3.6-flash:generateContent",
+      "https://api.groq.com/openai/v1/chat/completions",
       {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          "x-goog-api-key": process.env.GEMINI_API_KEY
+          "Authorization": `Bearer ${process.env.GROQ_API_KEY}`
         },
         body: JSON.stringify({
-          systemInstruction: {
-            parts: [{
-              text: "You are EDU SMART, a helpful study assistant for Ethiopian students in Grades 9-12. Explain school subjects clearly and simply. Show mathematics solutions step by step. Generate practice questions when asked. Explain incorrect answers and give useful revision tips. Adapt explanations to the student's grade and stream when provided. Do not invent textbook content or pretend to know a specific textbook unless its content is supplied. Never ask students for passwords, API keys, or private personal information."
-            }]
-          },
-          contents: [{
-            role: "user",
-            parts: [{
-              text: message
-            }]
-          }]
+          model: "openai/gpt-oss-20b",
+          messages: [
+            {
+              role: "system",
+              content: "You are EDU SMART, a helpful study assistant for Ethiopian students in Grades 9-12. Explain school subjects clearly and simply. Show mathematics solutions step by step. Generate practice questions when asked. Explain incorrect answers and give useful revision tips. Adapt explanations to the student's grade and stream when provided. Do not invent textbook content or pretend to know a specific textbook unless its content is supplied. Never ask students for passwords, API keys, or private personal information. Do not request student names, photos, or identifying details."
+            },
+            {
+              role: "user",
+              content: message.trim()
+            }
+          ],
+          max_completion_tokens: 1500,
+          temperature: 0.6
         })
       }
     );
 
     const data = await response.json();
 
-    // Handle Gemini errors
+    // Handle Groq errors
     if (!response.ok) {
-      console.error("Gemini error:", data);
+      console.error("Groq error:", {
+        status: response.status,
+        error: data.error?.message || "Unknown API error"
+      });
 
       return res.status(502).json({
         error: "The AI service could not answer. Please try again."
@@ -80,20 +85,18 @@ module.exports = async (req, res) => {
 
     // Get AI answer
     const answer =
-      data.candidates?.[0]?.content?.parts
-        ?.map(part => part.text || "")
-        .join("") || "No answer received.";
+      data.choices?.[0]?.message?.content?.trim() ||
+      "No answer received.";
 
     return res.status(200).json({
       answer: answer
     });
 
   } catch (error) {
-    console.error("AI error:", error);
+    console.error("AI connection error:", error.message);
 
     return res.status(500).json({
       error: "Something went wrong. Please try again."
     });
   }
 };
-                                
