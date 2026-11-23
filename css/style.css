@@ -198,4 +198,7 @@ body.quiz-mode #page-quiz #quizPanel .answer-option{padding:17px;font-size:15px}
     height: 65vh;
   }
    }
-   
+   html,
+body {
+    touch-action: pan-x pan-y;
+}
