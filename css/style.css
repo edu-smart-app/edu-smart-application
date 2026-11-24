@@ -233,3 +233,58 @@ body.quiz-mode .reading-exit {
     display: inline-flex !important;
     align-items: center;
 }
+
+/* ZYNEX - Midnight AI Theme */
+
+#ai-chat {
+  background: #080e1c !important;
+  color: #e5efff !important;
+  border: 1px solid #243653;
+  box-shadow: 0 12px 45px rgba(0, 0, 0, 0.5);
+}
+
+/* AI Header */
+#ai-chat .ai-header {
+  background: linear-gradient(135deg, #101d35, #142c50);
+  color: #ffffff;
+  border-bottom: 1px solid #29446b;
+}
+
+/* Chat messages */
+#ai-messages {
+  background: #080e1c;
+}
+
+/* AI replies */
+#ai-messages .ai-message.bot {
+  background: #14233b;
+  color: #e5efff;
+  border: 1px solid #263d60;
+}
+
+/* User messages */
+#ai-messages .ai-message.user {
+  background: #164b8c;
+  color: #ffffff;
+}
+
+/* Input area */
+#ai-chat input {
+  background: #111e34;
+  color: #ffffff;
+  border: 1px solid #30415d;
+}
+
+#ai-chat input::placeholder {
+  color: #8b9bb8;
+}
+
+/* Send and close buttons */
+#ai-chat button {
+  transition: 0.2s ease;
+}
+
+#ai-chat button:hover {
+  filter: brightness(1.2);
+}
+
