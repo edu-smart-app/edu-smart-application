@@ -210,3 +210,17 @@ body * {
     user-select: none !important;
     -webkit-touch-callout: none !important;
 }
+/* Show exit button only during study modes */
+.study-exit,
+.reading-exit {
+    display: none !important;
+}
+
+/* Show it while reading or quiz mode is active */
+body.reading-mode .study-exit,
+body.quiz-mode .study-exit,
+body.reading-mode .reading-exit,
+body.quiz-mode .reading-exit {
+    display: inline-flex !important;
+    align-items: center;
+}
