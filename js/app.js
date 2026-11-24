@@ -125,16 +125,63 @@ function currentSelection(prefix){return {grade:state.profile.grade,subject:$(pr
 function matchingQuestions(selection,difficulty){
   return (QUESTION_BANK||[]).filter(q=>q.grade===selection.grade&&q.subject===selection.subject&&q.unit===selection.unit&&q.difficulty===difficulty);
 }
+
 function renderLesson(){
   const s=currentSelection("learn");
   const qs=(QUESTION_BANK||[]).filter(q=>q.grade===s.grade&&q.subject===s.subject&&q.unit===s.unit);
-  $("lessonContent").innerHTML=`<span class="eyebrow">${escapeHTML(s.grade)} • ${escapeHTML(s.subject)}</span><h3>${escapeHTML(s.unit)}</h3>
-    <div class="lesson-content"><h4>About this unit</h4><p>This is the study-material area for <b>${escapeHTML(s.unit)}</b>. Add your textbook notes, definitions, formulas, worked examples and diagrams here as you build your content.</p>
-    <h4>Suggested study method</h4><ul><li>Read the textbook explanation carefully.</li><li>Write important terms and definitions in your own notes.</li><li>Study examples and diagrams.</li><li>Try practice questions after reviewing the topic.</li></ul>
-    <p><b>Questions currently added for this unit:</b> ${qs.length}. Add more in <code>js/questions.js</code>.</p></div>
-    <div class="lesson-actions"><button class="btn btn-primary" id="readNoteBtn" type="button">Start reading fullscreen</button><button class="btn btn-outline" id="lessonQuizBtn" type="button">Practise this unit →</button></div>`;
-  $("readNoteBtn").onclick=()=>{enterStudyMode("reading");if(!$("exitReadingMode")){const b=document.createElement("button");b.id="exitReadingMode";b.className="btn btn-outline study-exit reading-exit";b.type="button";b.textContent="Exit fullscreen";b.onclick=exitStudyMode;$("lessonContent").prepend(b);}};
-  $("lessonQuizBtn").onclick=()=>{ updateSubjects("quiz");$("quizSubject").value=s.subject;updateUnits("quiz");$("quizUnit").value=s.unit;updateAvailability();goPage("quiz"); };
+
+  $("lessonContent").innerHTML=`
+    <span class="eyebrow">${escapeHTML(s.grade)} • ${escapeHTML(s.subject)}</span>
+    <h3>${escapeHTML(s.unit)}</h3>
+
+    <div class="lesson-content">
+      <h4>About this unit</h4>
+      <p>This is the study-material area for <b>${escapeHTML(s.unit)}</b>. Add your textbook notes, definitions, formulas, worked examples and diagrams here as you build your content.</p>
+
+      <h4>Suggested study method</h4>
+      <ul>
+        <li>Read the textbook explanation carefully.</li>
+        <li>Write important terms and definitions in your own notes.</li>
+        <li>Study examples and diagrams.</li>
+        <li>Try practice questions after reviewing the topic.</li>
+      </ul>
+
+      <p><b>Questions currently added for this unit:</b> ${qs.length}. Add more in <code>js/questions.js</code>.</p>
+    </div>
+
+    <div class="lesson-actions">
+      <button class="btn btn-primary reading-start-btn" id="readNoteBtn" type="button">
+        Start reading fullscreen
+      </button>
+
+      <button class="btn btn-outline" id="lessonQuizBtn" type="button">
+        Practise this unit →
+      </button>
+    </div>
+  `;
+
+  $("readNoteBtn").onclick=()=>{
+    enterStudyMode("reading");
+
+    if(!$("exitReadingMode")){
+      const b=document.createElement("button");
+      b.id="exitReadingMode";
+      b.className="btn btn-outline study-exit reading-exit";
+      b.type="button";
+      b.textContent="Exit fullscreen";
+      b.onclick=exitStudyMode;
+      $("lessonContent").prepend(b);
+    }
+  };
+
+  $("lessonQuizBtn").onclick=()=>{
+    updateSubjects("quiz");
+    $("quizSubject").value=s.subject;
+    updateUnits("quiz");
+    $("quizUnit").value=s.unit;
+    updateAvailability();
+    goPage("quiz");
+  };
 }
 
 function setDifficulty(value){
