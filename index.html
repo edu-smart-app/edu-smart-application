@@ -123,18 +123,39 @@
       <footer class="footer">EDU SMART <span>Made for learning and progress.</span></footer>
     </main>
   </div>
-  <div id="gradeWelcome" class="grade-welcome hidden" role="dialog" aria-modal="true" aria-labelledby="gradeWelcomeTitle">
-    <div class="grade-welcome-card">
-      <span class="eyebrow">LET’S SET UP YOUR LEARNING SPACE</span>
-      <h2 id="gradeWelcomeTitle">Which grade are you in?</h2>
-      <p>Choose your current grade. EDU SMART will use it automatically throughout the app. You can change it later in My profile.</p>
-      <form id="gradeWelcomeForm" class="stack-form">
-        <label>Your grade<select id="firstGrade" required><option value="">Choose your grade</option><option>Grade 9</option><option>Grade 10</option><option>Grade 11</option><option>Grade 12</option></select></label>
-        <label id="firstStreamWrap" class="hidden">Choose your stream<select id="firstStream"><option value="Social Science">Social Science</option><option value="Natural Science">Natural Science</option></select></label>
-        <button class="btn btn-primary" type="submit">Continue to EDU SMART →</button>
-      </form>
-    </div>
+  
+<div id="gradeWelcome" class="grade-welcome hidden" role="dialog" aria-modal="true" aria-labelledby="gradeWelcomeTitle">
+  <div class="grade-welcome-card">
+    <span class="eyebrow">LET’S SET UP YOUR LEARNING SPACE</span>
+    <h2 id="gradeWelcomeTitle">Which grade are you in?</h2>
+    <p>Choose your current grade. EDU SMART will use it automatically throughout the app. You can change it later in My profile.</p>
+
+    <form id="gradeWelcomeForm" class="stack-form">
+      <label>
+        Your grade
+        <select id="firstGrade" required>
+          <option value="Grade 9">Grade 9</option>
+          <option value="Grade 10">Grade 10</option>
+          <option value="Grade 11">Grade 11</option>
+          <option value="Grade 12">Grade 12</option>
+        </select>
+      </label>
+
+      <label id="firstStreamWrap" class="hidden">
+        Choose your stream
+        <select id="firstStream">
+          <option value="Social Science">Social Science</option>
+          <option value="Natural Science">Natural Science</option>
+        </select>
+      </label>
+
+      <button class="btn btn-primary" type="submit">
+        Continue to EDU SMART →
+      </button>
+    </form>
   </div>
+</div>
+
   <div id="toast" class="toast" role="status"></div>
 <!-- EDU SMART AI Assistant -->
 <div id="ai-assistant">
