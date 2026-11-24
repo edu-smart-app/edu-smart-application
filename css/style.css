@@ -233,64 +233,99 @@ body.quiz-mode .reading-exit {
     display: inline-flex !important;
     align-items: center;
 }
-/* ZYNEX - Midnight AI Theme */
 
+/* ZYNEX - Adaptive Light and Dark Theme */
+
+#ai-assistant {
+  --zynex-bg: #ffffff;
+  --zynex-messages-bg: #f4f7fb;
+  --zynex-header-bg: linear-gradient(135deg, #eaf2ff, #d8e8ff);
+  --zynex-header-text: #17365d;
+  --zynex-subtitle: #58718f;
+  --zynex-bot-bg: #e9eff8;
+  --zynex-bot-text: #172b4d;
+  --zynex-user-bg: #4169e1;
+  --zynex-user-text: #ffffff;
+  --zynex-input-bg: #ffffff;
+  --zynex-input-text: #172b4d;
+  --zynex-placeholder: #8290a5;
+  --zynex-border: #dce4ef;
+  --zynex-close: #17365d;
+}
+
+/* Dark mode colors */
+body.dark #ai-assistant {
+  --zynex-bg: #080e1c;
+  --zynex-messages-bg: #080e1c;
+  --zynex-header-bg: linear-gradient(135deg, #101d35, #142c50);
+  --zynex-header-text: #ffffff;
+  --zynex-subtitle: #8daedb;
+  --zynex-bot-bg: #14233b;
+  --zynex-bot-text: #e5efff;
+  --zynex-user-bg: #164b8c;
+  --zynex-user-text: #ffffff;
+  --zynex-input-bg: #111e34;
+  --zynex-input-text: #ffffff;
+  --zynex-placeholder: #8b9bb8;
+  --zynex-border: #29446b;
+  --zynex-close: #ffffff;
+}
+
+/* Main chat window */
 #ai-chat {
-  background: #080e1c !important;
-  color: #e5efff !important;
-  border: 1px solid #243653;
-  box-shadow: 0 12px 45px rgba(0, 0, 0, 0.5);
+  background: var(--zynex-bg) !important;
+  color: var(--zynex-bot-text) !important;
+  border: 1px solid var(--zynex-border);
+  box-shadow: 0 12px 45px rgba(0, 0, 0, 0.3);
 }
 
-/* ZYNEX Header */
+/* Header */
 .ai-chat-header {
-  background: linear-gradient(135deg, #101d35, #142c50);
-  color: #ffffff;
-  border-bottom: 1px solid #29446b;
-}
-
-.ai-chat-header strong {
-  color: #ffffff;
-  letter-spacing: 2px;
-  font-size: 16px;
+  background: var(--zynex-header-bg);
+  color: var(--zynex-header-text);
+  border-bottom: 1px solid var(--zynex-border);
 }
 
 .ai-chat-header small {
-  color: #8daedb;
+  color: var(--zynex-subtitle);
 }
 
-/* Chat background */
+#ai-close {
+  color: var(--zynex-close);
+}
+
+/* Message area */
 .ai-messages {
-  background: #080e1c;
+  background: var(--zynex-messages-bg);
 }
 
-/* ZYNEX replies */
+/* ZYNEX messages */
 .ai-message.bot {
-  background: #14233b;
-  color: #e5efff;
-  border: 1px solid #263d60;
+  background: var(--zynex-bot-bg);
+  color: var(--zynex-bot-text);
+  border: 1px solid var(--zynex-border);
 }
 
-/* Your messages */
+/* Student messages */
 .ai-message.user {
-  background: #164b8c;
-  color: #ffffff;
+  background: var(--zynex-user-bg);
+  color: var(--zynex-user-text);
 }
 
 /* Input area */
 .ai-form {
-  background: #0d1729;
-  border-top: 1px solid #243653;
+  background: var(--zynex-bg);
+  border-top: 1px solid var(--zynex-border);
 }
 
 .ai-form input {
-  background: #111e34;
-  color: #ffffff;
-  border: 1px solid #30415d;
+  background: var(--zynex-input-bg);
+  color: var(--zynex-input-text);
+  border: 1px solid var(--zynex-border);
 }
 
 .ai-form input::placeholder {
-  color: #8b9bb8;
+  color: var(--zynex-placeholder);
 }
 
 /* Buttons */
@@ -301,7 +336,7 @@ body.quiz-mode .reading-exit {
 
 .ai-form button:hover,
 .ai-chat-header button:hover {
-  filter: brightness(1.2);
+  filter: brightness(1.15);
 }
 
 /* Floating AI button */
@@ -311,6 +346,7 @@ body.quiz-mode .reading-exit {
   border: 1px solid #5795ff;
   box-shadow: 0 5px 25px rgba(23, 104, 210, 0.4);
 }
+
 /* ZYNEX futuristic branding */
 
 .ai-chat-header strong {
@@ -335,6 +371,7 @@ body.quiz-mode .reading-exit {
   font-size: 11px;
   letter-spacing: 0.4px;
 }
+
 /* ZYNEX - MathJax equation readability */
 
 .ai-message mjx-container {
