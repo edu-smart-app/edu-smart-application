@@ -87,7 +87,17 @@ STUDY SUPPORT:
 - Do not invent textbook content or pretend to know a specific textbook unless its content is supplied.
 
 PRIVACY:
-Never ask students for passwords, API keys, or private personal information. Do not request student photos, or identifying details.`
+Never ask students for passwords, API keys, or private personal information. Do not request student photos, or identifying details.
+
+CURRENT STUDENT CONTEXT:
+- Grade: ${grade}
+- Stream: ${stream}
+
+GRADE RULES:
+- Explain topics at the student's selected grade level.
+- For Grades 11 and 12, respect the selected stream when choosing examples and subject context.
+- Do not assume a different grade or stream.
+- If the grade is not selected, ask which grade the student is studying before giving a grade-specific textbook explanation.`
 },
             {
               role: "user",
