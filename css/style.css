@@ -202,24 +202,11 @@ body.quiz-mode #page-quiz #quizPanel .answer-option{padding:17px;font-size:15px}
 body {
     touch-action: pan-x pan-y;
 }
-/* Disable text selection throughout the app */
+/* Disable all text selection in EDU SMART */
+html,
 body,
 body * {
-    -webkit-user-select: none;
-    user-select: none;
-}
-
-/* Allow students to select and copy study notes */
-.lesson-content,
-.lesson-content * {
-    -webkit-user-select: text;
-    user-select: text;
-}
-
-/* Keep form fields editable and selectable */
-input,
-textarea,
-select {
-    -webkit-user-select: text;
-    user-select: text;
+    -webkit-user-select: none !important;
+    user-select: none !important;
+    -webkit-touch-callout: none !important;
 }
