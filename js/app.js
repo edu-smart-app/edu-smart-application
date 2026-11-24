@@ -507,23 +507,34 @@ if (aiToggle && aiClose && aiChat && aiForm) {
     aiChat.classList.add("hidden");
   });
 
- function addAIMessage(message, type) {
+function addAIMessage(message, type) {
   const bubble = document.createElement("div");
   bubble.className = "ai-message " + type;
 
-  // Keep AI messages as text, not executable HTML
-  bubble.textContent = message;
+  if (type === "bot") {
+
+    // Convert Markdown into formatted HTML
+    const html = marked.parse(message);
+
+    // Sanitize HTML for security
+    bubble.innerHTML = DOMPurify.sanitize(html);
+
+  } else {
+    // Keep user messages as plain text
+    bubble.textContent = message;
+  }
 
   aiMessages.appendChild(bubble);
 
-  // Render mathematical expressions inside the new message
-  if (window.MathJax && window.MathJax.startup) {
-    window.MathJax.startup.promise
-      .then(() => window.MathJax.typesetPromise([bubble]))
-      .catch(error => console.error("MathJax error:", error));
+  // Render mathematical expressions
+  if (window.MathJax) {
+    MathJax.startup.promise
+      .then(() => MathJax.typesetPromise([bubble]))
+      .catch(error => console.error("MathJax:", error));
   }
 
   aiMessages.scrollTop = aiMessages.scrollHeight;
+
   return bubble;
 } 
 
