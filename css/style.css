@@ -355,3 +355,72 @@ body.quiz-mode .reading-exit {
   line-height: 1.7;
   overflow-wrap: anywhere;
 }
+/* ZYNEX Markdown formatting */
+
+.ai-message h1,
+.ai-message h2,
+.ai-message h3 {
+  margin: 14px 0 8px;
+  line-height: 1.4;
+  color: inherit;
+}
+
+.ai-message h1 {
+  font-size: 21px;
+}
+
+.ai-message h2 {
+  font-size: 18px;
+}
+
+.ai-message h3 {
+  font-size: 16px;
+}
+
+.ai-message p {
+  margin: 8px 0;
+}
+
+.ai-message ul,
+.ai-message ol {
+  padding-left: 22px;
+  margin: 8px 0;
+}
+
+.ai-message li {
+  margin: 5px 0;
+}
+
+.ai-message strong {
+  font-weight: 750;
+}
+
+.ai-message hr {
+  border: 0;
+  border-top: 1px solid #718096;
+  margin: 14px 0;
+}
+
+.ai-message pre {
+  overflow-x: auto;
+  padding: 10px;
+  border-radius: 8px;
+  background: rgba(0,0,0,0.2);
+}
+
+.ai-message code {
+  overflow-wrap: anywhere;
+}
+
+.ai-message table {
+  display: block;
+  max-width: 100%;
+  overflow-x: auto;
+  border-collapse: collapse;
+}
+
+.ai-message th,
+.ai-message td {
+  padding: 7px;
+  border: 1px solid #718096;
+   }
