@@ -517,3 +517,27 @@ body.dark #ai-assistant .ai-chat-header strong {
   opacity: 1;
   font-weight: 500;
 }
+/* ZYNEX - Compact message spacing */
+#ai-assistant .ai-message {
+  line-height: 1.2 !important;
+}
+
+#ai-assistant .ai-message p {
+  margin-block: 0 !important;
+  padding: 0 !important;
+}
+
+#ai-assistant .ai-message ul,
+#ai-assistant .ai-message ol {
+  margin-block: 2px !important;
+  padding-left: 20px;
+}
+
+#ai-assistant .ai-message li {
+  margin-block: 0 !important;
+  line-height: 1.2 !important;
+}
+
+#ai-assistant .ai-message mjx-container {
+  margin-block: 2px !important;
+}
