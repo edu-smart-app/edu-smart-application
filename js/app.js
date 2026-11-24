@@ -507,14 +507,25 @@ if (aiToggle && aiClose && aiChat && aiForm) {
     aiChat.classList.add("hidden");
   });
 
-  function addAIMessage(message, type) {
-    const bubble = document.createElement("div");
-    bubble.className = "ai-message " + type;
-    bubble.textContent = message;
-    aiMessages.appendChild(bubble);
-    aiMessages.scrollTop = aiMessages.scrollHeight;
-    return bubble;
+ function addAIMessage(message, type) {
+  const bubble = document.createElement("div");
+  bubble.className = "ai-message " + type;
+
+  // Keep AI messages as text, not executable HTML
+  bubble.textContent = message;
+
+  aiMessages.appendChild(bubble);
+
+  // Render mathematical expressions inside the new message
+  if (window.MathJax && window.MathJax.startup) {
+    window.MathJax.startup.promise
+      .then(() => window.MathJax.typesetPromise([bubble]))
+      .catch(error => console.error("MathJax error:", error));
   }
+
+  aiMessages.scrollTop = aiMessages.scrollHeight;
+  return bubble;
+} 
 
   aiForm.addEventListener("submit", async (event) => {
     event.preventDefault();
