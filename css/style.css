@@ -347,29 +347,37 @@ body.dark #ai-assistant {
   box-shadow: 0 5px 25px rgba(23, 104, 210, 0.4);
 }
 
-/* ZYNEX futuristic branding */
+/* ZYNEX - Visible futuristic branding */
 
-.ai-chat-header strong {
-  font-size: 21px;
+#ai-assistant .ai-chat-header strong {
+  display: block;
+  font-size: 23px;
   font-weight: 900;
-  letter-spacing: 4px;
-  background: linear-gradient(
-    90deg,
-    #ffffff,
-    #64b5ff,
-    #8b5cf6
-  );
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-  text-shadow: 0 0 18px rgba(59, 130, 246, 0.25);
+  letter-spacing: 5px;
+
+  background: none !important;
+  background-clip: initial !important;
+  -webkit-background-clip: initial !important;
+
+  color: #174b91 !important;
+  -webkit-text-fill-color: #174b91 !important;
+
+  text-shadow: 0 1px 2px rgba(20, 50, 100, 0.15);
 }
 
-.ai-chat-header small {
+/* Dark mode */
+body.dark #ai-assistant .ai-chat-header strong {
+  color: #78c5ff !important;
+  -webkit-text-fill-color: #78c5ff !important;
+  text-shadow: 0 0 12px rgba(75, 160, 255, 0.4);
+}
+
+#ai-assistant .ai-chat-header small {
   display: block;
   margin-top: 5px;
   font-size: 11px;
   letter-spacing: 0.4px;
+  opacity: 1;
 }
 
 /* ZYNEX - MathJax equation readability */
