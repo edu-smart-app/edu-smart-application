@@ -461,3 +461,30 @@ body.dark #ai-assistant {
   padding: 7px;
   border: 1px solid #718096;
    }
+
+/* ZYNEX - High visibility branding */
+
+/* Light mode */
+#ai-assistant .ai-chat-header strong {
+  display: inline-block;
+  font-size: 23px;
+  font-weight: 900;
+  letter-spacing: 5px;
+  color: #174b91 !important;
+  background: none !important;
+  -webkit-text-fill-color: #174b91 !important;
+  text-shadow: 0 1px 1px rgba(20, 50, 100, 0.12);
+}
+
+/* Dark mode */
+body.dark #ai-assistant .ai-chat-header strong {
+  color: #78c5ff !important;
+  -webkit-text-fill-color: #78c5ff !important;
+  text-shadow: 0 0 12px rgba(75, 160, 255, 0.35);
+}
+
+/* Keep the subtitle readable */
+#ai-assistant .ai-chat-header small {
+  opacity: 1;
+  font-weight: 500;
+}
