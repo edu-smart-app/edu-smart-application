@@ -215,6 +215,15 @@ body * {
 .reading-exit {
     display: none !important;
 }
+/* Hide the start-reading button only while already in reading mode */
+body.reading-mode .reading-start-btn {
+  display: none !important;
+}
+
+/* Keep the practice button available in reading mode */
+body.reading-mode #lessonQuizBtn {
+  display: inline-flex !important;
+}
 
 /* Show it while reading or quiz mode is active */
 body.reading-mode .study-exit,
