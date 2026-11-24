@@ -202,3 +202,24 @@ body.quiz-mode #page-quiz #quizPanel .answer-option{padding:17px;font-size:15px}
 body {
     touch-action: pan-x pan-y;
 }
+/* Disable text selection throughout the app */
+body,
+body * {
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+/* Allow students to select and copy study notes */
+.lesson-content,
+.lesson-content * {
+    -webkit-user-select: text;
+    user-select: text;
+}
+
+/* Keep form fields editable and selectable */
+input,
+textarea,
+select {
+    -webkit-user-select: text;
+    user-select: text;
+}
