@@ -335,3 +335,23 @@ body.quiz-mode .reading-exit {
   font-size: 11px;
   letter-spacing: 0.4px;
 }
+/* ZYNEX - MathJax equation readability */
+
+.ai-message mjx-container {
+  color: inherit !important;
+  max-width: 100%;
+}
+
+.ai-message mjx-container[display="true"] {
+  display: block;
+  max-width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 6px 2px;
+  margin: 8px 0;
+}
+
+.ai-message {
+  line-height: 1.7;
+  overflow-wrap: anywhere;
+}
