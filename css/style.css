@@ -86,7 +86,7 @@ body.quiz-mode #page-quiz #quizPanel .answer-option{padding:17px;font-size:15px}
 
   /* Larger ZYNEX window */
   width: min(650px, calc(100vw - 30px));
-  height: 85vh;
+  height: 65vh;
   max-height: 760px;
   min-height: 420px;
 
@@ -202,7 +202,7 @@ body.quiz-mode #page-quiz #quizPanel .answer-option{padding:17px;font-size:15px}
 
   .ai-chat {
   width: calc(100vw - 16px);
-  height: 82vh;
+  height: 65vh;
   max-height: 850px;
   min-height: 380px;
   }
