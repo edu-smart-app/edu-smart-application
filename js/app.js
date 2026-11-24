@@ -536,9 +536,11 @@ if (aiToggle && aiClose && aiChat && aiForm) {
           headers: {
             "Content-Type": "application/json"
           },
-          body: JSON.stringify({
-            message: question
-          })
+        body: JSON.stringify({
+  message: question,
+  grade: state.profile.grade || "Not selected",
+  stream: state.profile.stream || "Not applicable"
+})
         }
       );
 
