@@ -512,19 +512,62 @@ function addAIMessage(message, type) {
   bubble.className = "ai-message " + type;
 
   if (type === "bot") {
+    // Temporarily protect complete LaTeX expressions
+    const mathExpressions = [];
 
-    // Protect MathJax delimiters from Markdown
-    const protectedMessage = message
-      .replace(/\\\[/g, "&#92;[")
-      .replace(/\\\]/g, "&#92;]")
-      .replace(/\\\(/g, "&#92;(")
-      .replace(/\\\)/g, "&#92;)");
+    const protectedMessage = message.replace(
+      /\\\[([\s\S]*?)\\\]|\\\(([\s\S]*?)\\\)/g,
+      (match) => {
+        const token = `MATHJAXEXPRESSIONTOKEN${mathExpressions.length}END`;
+        mathExpressions.push(match);
+        return token;
+      }
+    );
 
-    // Convert Markdown into HTML
+    // Format ordinary Markdown
     const html = marked.parse(protectedMessage);
 
-    // Sanitize generated HTML
+    // Sanitize the generated HTML
     bubble.innerHTML = DOMPurify.sanitize(html);
+
+    // Restore mathematical expressions as safe text nodes
+    const walker = document.createTreeWalker(
+      bubble,
+      NodeFilter.SHOW_TEXT
+    );
+
+    const textNodes = [];
+    while (walker.nextNode()) {
+      textNodes.push(walker.currentNode);
+    }
+
+    textNodes.forEach((node) => {
+      const parts = node.nodeValue.split(
+        /(MATHJAXEXPRESSIONTOKEN\d+END)/g
+      );
+
+      if (parts.length === 1) return;
+
+      const fragment = document.createDocumentFragment();
+
+      parts.forEach((part) => {
+        const match = part.match(
+          /^MATHJAXEXPRESSIONTOKEN(\d+)END$/
+        );
+
+        if (match) {
+          fragment.appendChild(
+            document.createTextNode(
+              mathExpressions[Number(match[1])]
+            )
+          );
+        } else if (part) {
+          fragment.appendChild(document.createTextNode(part));
+        }
+      });
+
+      node.parentNode.replaceChild(fragment, node);
+    });
 
   } else {
     bubble.textContent = message;
@@ -532,19 +575,17 @@ function addAIMessage(message, type) {
 
   aiMessages.appendChild(bubble);
 
-  // Render mathematical expressions
-  if (window.MathJax) {
+  // Let MathJax format the restored expressions
+  if (type === "bot" && window.MathJax) {
     MathJax.startup.promise
       .then(() => MathJax.typesetPromise([bubble]))
-      .catch(error => console.error("MathJax:", error));
+      .catch(error => console.error("MathJax error:", error));
   }
 
   aiMessages.scrollTop = aiMessages.scrollHeight;
-
   return bubble;
 }
-
-
+  
   aiForm.addEventListener("submit", async (event) => {
     event.preventDefault();
 
