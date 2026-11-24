@@ -404,7 +404,7 @@ body.dark #ai-assistant .ai-chat-header strong {
   padding: 6px 2px;
   margin: 8px 0;
    .ai-message {
-  line-height: 1.35;
+  line-height: 1;
   overflow-wrap: anywhere;
 }
 
