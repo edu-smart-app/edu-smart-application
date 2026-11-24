@@ -78,7 +78,7 @@ STUDY SUPPORT:
 
 PRIVACY:
 Never ask students for passwords, API keys, or private personal information. Do not request student photos, or identifying details.`
-}
+},
             {
               role: "user",
               content: message.trim()
