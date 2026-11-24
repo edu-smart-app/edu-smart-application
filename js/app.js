@@ -513,14 +513,20 @@ function addAIMessage(message, type) {
 
   if (type === "bot") {
 
-    // Convert Markdown into formatted HTML
-    const html = marked.parse(message);
+    // Protect MathJax delimiters from Markdown
+    const protectedMessage = message
+      .replace(/\\\[/g, "&#92;[")
+      .replace(/\\\]/g, "&#92;]")
+      .replace(/\\\(/g, "&#92;(")
+      .replace(/\\\)/g, "&#92;)");
 
-    // Sanitize HTML for security
+    // Convert Markdown into HTML
+    const html = marked.parse(protectedMessage);
+
+    // Sanitize generated HTML
     bubble.innerHTML = DOMPurify.sanitize(html);
 
   } else {
-    // Keep user messages as plain text
     bubble.textContent = message;
   }
 
@@ -536,7 +542,8 @@ function addAIMessage(message, type) {
   aiMessages.scrollTop = aiMessages.scrollHeight;
 
   return bubble;
-} 
+}
+
 
   aiForm.addEventListener("submit", async (event) => {
     event.preventDefault();
