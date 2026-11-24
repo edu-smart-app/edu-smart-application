@@ -352,19 +352,42 @@ $("profilePhotoInput").addEventListener("change",e=>{
 });
 $("removeProfilePhoto").addEventListener("click",()=>{state.profile.photo="";saveState();loadProfile();toast("Profile photo removed.");});
 
-function enterStudyMode(mode){
-  document.body.classList.remove("reading-mode","quiz-mode");
-  document.body.classList.add(mode==="reading"?"reading-mode":"quiz-mode");
-  const request=document.documentElement.requestFullscreen;
-  if(request){try{const result=request.call(document.documentElement);if(result&&result.catch)result.catch(()=>{});}catch(e){}}
+function enterStudyMode(mode) {
+  document.body.classList.remove("reading-mode", "quiz-mode");
+  document.body.classList.add(
+    mode === "reading" ? "reading-mode" : "quiz-mode"
+  );
+
+  const request = document.documentElement.requestFullscreen;
+
+  if (request) {
+    try {
+      const result = request.call(document.documentElement);
+      if (result && result.catch) {
+        result.catch(() => {
+          document.body.classList.remove("reading-mode", "quiz-mode");
+        });
+      }
+    } catch (e) {
+      document.body.classList.remove("reading-mode", "quiz-mode");
+    }
+  }
 }
-function exitStudyMode(){
-  document.body.classList.remove("reading-mode","quiz-mode");
-  if(document.fullscreenElement&&document.exitFullscreen){document.exitFullscreen().catch(()=>{});}
+
+function exitStudyMode() {
+  document.body.classList.remove("reading-mode", "quiz-mode");
+
+  if (document.fullscreenElement && document.exitFullscreen) {
+    document.exitFullscreen().catch(() => {});
+  }
 }
-$("exitQuizMode").addEventListener("click",exitStudyMode);
-document.addEventListener("fullscreenchange",()=>{
-  if(!document.fullscreenElement){document.body.classList.remove("reading-mode","quiz-mode");}
+
+$("exitQuizMode").addEventListener("click", exitStudyMode);
+
+document.addEventListener("fullscreenchange", () => {
+  if (!document.fullscreenElement) {
+    document.body.classList.remove("reading-mode", "quiz-mode");
+  }
 });
 
 function toggleStreamField(gradeId,wrapId){
