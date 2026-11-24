@@ -21,6 +21,16 @@ module.exports = async (req, res) => {
 
   try {
     const message = req.body?.message;
+    const allowedGrades = ["Grade 9", "Grade 10", "Grade 11", "Grade 12"];
+const allowedStreams = ["Social Science", "Natural Science"];
+
+const grade = allowedGrades.includes(req.body?.grade)
+  ? req.body.grade
+  : "Not selected";
+
+const stream = allowedStreams.includes(req.body?.stream)
+  ? req.body.stream
+  : "Not applicable";
 
     // Check the question
     if (typeof message !== "string" || !message.trim()) {
