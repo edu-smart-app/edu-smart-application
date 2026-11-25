@@ -26,7 +26,7 @@ const CURRICULUM = {
     "Physics":["Unit 1 - Add textbook unit name"],
     "History":["unit 1 add "],
     "Geography":["unit 1 add"],
-    "Economics":["unit 1 add]
+    "Economics":["unit 1 add"]
       },
   "Grade 10": {
     "Mathematics":["Unit 1 - Add textbook unit name"],
