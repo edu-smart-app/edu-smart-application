@@ -24,15 +24,20 @@ const CURRICULUM = {
 ],
     "Chemistry":["Unit 1 - Add textbook unit name"],
     "Physics":["Unit 1 - Add textbook unit name"],
-    "ICT":["Unit 1 - Add textbook unit name"]
-  },
+    "History":["unit 1 add "],
+    "Geography":["unit 1 add"],
+    "Economics":["unit 1 add]
+      },
   "Grade 10": {
-    "Mathematics":["Algebra","Functions","Geometry"],
-    "English":["Grammar","Vocabulary","Reading"],
-    "Biology":["Cell Biology","Classification","Ecology"],
-    "Chemistry":["Atomic Structure","Periodic Classification","Chemical Bonding"],
-    "Physics":["Motion","Vectors","Force"],
-    "ICT":["Computer Fundamentals","Networking","Programming"]
+    "Mathematics":["Unit 1 - Add textbook unit name"],
+    "English":["Unit 1 - Add textbook unit name"],
+    "Biology":[  "Unit 1: add"],
+    "Chemistry":["Unit 1 - Add textbook unit name"],
+    "Physics":["Unit 1 - Add textbook unit name"],
+    "History":["unit 1 add "],
+    "Geography":["unit 1 add"],
+    "Economics":["unit 1 add]
+                 
   },
   "Grade 11": {
     "Mathematics":["Unit 1 - Add textbook unit name"],
