@@ -14,7 +14,14 @@ const CURRICULUM = {
   "Grade 9": {
     "Mathematics":["Unit 1 - Add textbook unit name"],
     "English":["Unit 1 - Add textbook unit name"],
-    "Biology":["Unit 1 - Add textbook unit name"],
+    "Biology":[
+  "Unit 1: Introduction to Biology",
+  "Unit 2: Characteristics and Classification of Organisms",
+  "Unit 3: Cells",
+  "Unit 4: Reproduction",
+  "Unit 5: Human Health, Nutrition and Disease",
+  "Unit 6: Ecology"
+],
     "Chemistry":["Unit 1 - Add textbook unit name"],
     "Physics":["Unit 1 - Add textbook unit name"],
     "ICT":["Unit 1 - Add textbook unit name"]
