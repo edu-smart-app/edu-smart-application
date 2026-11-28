@@ -85,7 +85,7 @@ body.quiz-mode #page-quiz #quizPanel .answer-option{padding:17px;font-size:15px}
   bottom: 65px;
 
   /* Larger ZYNEX window */
-  width: min(950px, calc(100vw - 20px));
+  width: min(750px, calc(100vw - 30px));
   height: 65vh;
   max-height: 760px;
   min-height: 420px;
