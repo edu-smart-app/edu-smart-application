@@ -1,4 +1,4 @@
-const CACHE_NAME = "edu-smart-cache-v41";
+const CACHE_NAME = "edu-smart-cache-v42";
 const FILES_TO_CACHE = [
   "./", "./index.html", "./css/style.css", "./js/questions.js",
   "./js/app.js", "./manifest.json", "./favicon.png",
